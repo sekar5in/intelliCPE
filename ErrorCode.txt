@@ -1,0 +1,4 @@
+# An exit code, or sometimes known as a return code, is the code returned to a parent process by an executable. 
+
+001     -   Unable to Connect Hypervisor
+002     -   Failed to open connection
