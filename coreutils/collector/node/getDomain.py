@@ -29,12 +29,38 @@ def domain_by_uuid(domain_uuid):
 def domain_list_by_id():
     domainIDs = conn.listDomainsID()
     if domainIDs == None:
-        print('Failed to get a list of domain IDs', file=sys.stderr)
-    
-    print("Active domain IDs:")
+        e = "Failed to get a list of domain IDs"
+        print(e, file=sys.stderr)
+        return e
+
     if len(domainIDs) == 0:
-        print(' None')
+        return None
     else:
-        for domainID in domainIDs:
-        print(' '+str(domainID))
+        return str(domainID)
     
+def domain_list_all_status():
+    """
+    VIR_CONNECT_LIST_DOMAINS_ACTIVE
+    VIR_CONNECT_LIST_DOMAINS_INACTIVE
+    VIR_CONNECT_LIST_DOMAINS_PERSISTENT
+    VIR_CONNECT_LIST_DOMAINS_TRANSIENT
+    VIR_CONNECT_LIST_DOMAINS_RUNNING
+    VIR_CONNECT_LIST_DOMAINS_PAUSED
+    VIR_CONNECT_LIST_DOMAINS_SHUTOFF
+    VIR_CONNECT_LIST_DOMAINS_OTHER
+    VIR_CONNECT_LIST_DOMAINS_MANAGEDSAVE
+    VIR_CONNECT_LIST_DOMAINS_NO_MANAGEDSAVE
+    VIR_CONNECT_LIST_DOMAINS_AUTOSTART
+    VIR_CONNECT_LIST_DOMAINS_NO_AUTOSTART
+    VIR_CONNECT_LIST_DOMAINS_HAS_SNAPSHOT
+    VIR_CONNECT_LIST_DOMAINS_NO_SNAPSHOT
+    """
+    domains = conn.listAllDomains(0)
+    if domains:
+        #if len(domains) != 0:
+            #for domain in domains:
+            #    print('  '+domain.name())
+            return domains
+    else:
+        return None
+
