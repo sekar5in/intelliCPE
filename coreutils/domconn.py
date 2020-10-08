@@ -12,8 +12,8 @@ CopyRights : All Rights are Reserved
 import pprint
 import sys
 import libvirt
-from connector.roConn import ROConnection
-from connector.rwConn import RWConnection
+from connector.roconn import ROConnection
+from connector.rwconn import RWConnection
 
 
 class DomainStatus:
