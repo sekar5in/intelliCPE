@@ -4,3 +4,4 @@
 002:"Failed to open connection"
 003:"Returned None"
 004:"Results Failed"
+255:"Results Succeed"

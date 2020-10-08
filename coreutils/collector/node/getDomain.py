@@ -2,7 +2,7 @@
 Class for intelli Agent libvirt Domain operations
 
 Author : Dhanasekara Pandian
-Email  : sekar5in@quehive.com
+Email  : sekar5in@gmail.com
 CopyRights : All Rights are Reserved
 
 '''
@@ -13,12 +13,11 @@ import sys
 import libvirt
 
 
-
-def domain_by_id(domain_id):
+def domain_by_id(conn,domain_id):
     dom = conn.lookupByID(domain_id)
     return dom
 
-def domain_by_name(domain_name):
+def domain_by_name(conn, domain_name):
     dom = conn.lookupByID(domain_name)
     return dom
 

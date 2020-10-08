@@ -2,7 +2,7 @@
 Class for intelli Agent libvirt operations
 
 Author : Dhanasekara Pandian
-Email  : sekar5in@quehive.com
+Email  : sekar5in@gmail.com
 CopyRights : All Rights are Reserved
 
 '''

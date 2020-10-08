@@ -20,32 +20,15 @@ class RWConnection:
     """
 
     def __init__(self):
-        try:
-            self.conn = libvirt.open('qemu:///system')
-            if self.conn == None:
-                e = "Failed to open readwrite connection to qemu:///system"
-                print(e, file=sys.stderr)
-                return 2, e
-        except Exception as e:
-            return 1, e
+        self.conn = libvirt.open('qemu:///system')
 
-    def is_alive(self):
-        alive = self.conn.isAlive()
-        return alive
-    
-    def get_issecure(self):
-        isSecure = self.conn.isSecure()
-        return isSecure
+    def connect(self):
+        if self.conn is None:
+            e = "Failed to open readwrite connection to qemu:///system"
+            print(e, file=sys.stderr)
+            return e
 
-    def get_version(self):
-        ver = self.conn.getVersion()
-        return ver
-
-    def get_isencrypted(self):
-        encrypt_status = self.conn.isEncrypted()
-        return encrypt_status
-
-    def close(self):
+    def disconnect(self):
         """A connection must be released by calling the close method of the virConnection class when no
         longer required. Connections are reference counted objects, so there should be a corresponding call
         to the close method for each open function call.
@@ -54,4 +37,4 @@ class RWConnection:
         the corresponding operation completes.
         """
         self.conn.close()
-        exit(0)
+        return 255
