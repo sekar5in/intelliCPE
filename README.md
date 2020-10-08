@@ -16,15 +16,10 @@ IntelliCPE Python Agent
     def get_isencrypted(self):
         encrypt_status = self.conn.isEncrypted()
         return encrypt_status
-        
-        
-           
- 
- 
+         
     def list_domain(self):
         host = self.conn.getHostname()
         print("Hostname :" + host)
-
 
     def listdomain(self):
         caps = self.conn.getCapabilities()
@@ -57,8 +52,7 @@ IntelliCPE Python Agent
             for domainID in domainIDs:
                 print('  '+str(domainID))
         
-        domainNames = self.conn.listDefinedDomains()
-        print(domainNames)
+        
 
         domainIDs = self.conn.listDomainsID()
         print(domainIDs)

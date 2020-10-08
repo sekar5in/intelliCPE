@@ -9,18 +9,22 @@ CopyRights : All Rights are Reserved
 
 import os
 from connector import roConn
-from coreutils.watcher import DomainStatus
-
+from coreutils.watcher import domConn
+from coreutils.watcher import domAction
 
 # Boiler Plate
 if __name__ == '__main__':
     print("Current Working Directory :", os.getcwd())
-    
+
     # Ensure read write call is running with administrator privileges
-    conn = DomainStatus.DomainStatus('ro')
+    conn = domConn.DomainStatus('ro')
 
     # Connection
     conn_obj, conn_return = conn.connection()
+
+    # list all registered domains
+    action_obj = domAction.DomainAction(conn_return)
+    action_obj.list_all_domains()
 
     # disconnection
     conn.disconnection(conn_obj)
