@@ -27,14 +27,14 @@ class DomainStatus:
             print("Establishing read only connection")
             c = ROConnection()
             conn = c.connect()
-            print("Connected")
+            # print("Connected")
             return c, conn
 
         elif con_type == 'rw':
             print("Establishing Read Write Connection")
             c = RWConnection()
             conn = c.connect()
-            print("Connected")
+            # print("Connected")
             return c, conn
 
         else:
@@ -49,6 +49,6 @@ class DomainStatus:
             if c is not None:
                 print("Disconnecting from Established Connection...")
                 c.disconnect()
-                print("Disconnected")
+                # print("Disconnected")
         except Exception as e:
             print(e)

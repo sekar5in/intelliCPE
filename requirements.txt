@@ -1,0 +1,7 @@
+pip install uptime
+pip install distro
+pip install platform
+pip install socket
+pip install datetime
+
+
