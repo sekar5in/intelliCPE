@@ -35,7 +35,7 @@ class DomainAction:
     def resource_status(self):
         node_info = nod.get_info(self.conn_return)
 
-        resourcestatus = {"vcpus": nod.get_getmaxvcpus(self.conn_return),
+        nodestatus = {"vcpus": nod.get_getmaxvcpus(self.conn_return),
                           "nodename": nod.get_hostname(self.conn_return),
                           "freememory": nod.get_freememory(self.conn_return),
                           #"get_cpustats": nod.get_cpustats(self.conn_return),
@@ -54,17 +54,19 @@ class DomainAction:
                           "uptime": nod.get_uptime(),
                           "ipaddress": nod.get_ipaddress(),
                           "node_id": "",
-                          "python_version":nod.get_python_version()
+                          "python_version":nod.get_python_version(),
+                          "all_interfaces": nod.get_listInterfaces(self.conn_return),
+                          "active_interfaces": nod.get_active_interfaces(self.conn_return)
                           #"get_sysinfo": nod.get_sysinfo(self.conn_return),
                           }
-        json_data = dict_to_json(resourcestatus)
+        json_data = dict_to_json(nodestatus)
         #print(resourcestatus)
-        return resourcestatus
+        return nodestatus
 
     def stats(self):
         t_domain = dom.configured_domain(self.conn_return)
-        statistics =  ldom.list_domain(self.conn_return)
+        vmstatus =  ldom.list_domain(self.conn_return)
         #print(statistics)
-        return statistics
+        return vmstatus
 
 

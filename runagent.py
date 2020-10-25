@@ -16,8 +16,12 @@ from coreutils.dataformat import dict_to_json
 import json
 import pickle
 
+
 def main():
     while True:
+        from datetime import datetime
+        startTime = datetime.now()
+
         print("Current Working Directory :", os.getcwd())
 
         # Ensure read write call is running with administrator privileges
@@ -25,15 +29,14 @@ def main():
 
         # Connection
         conn_obj, conn_return = conn.connection()
-
         action_obj = domaction.DomainAction(conn_return)
 
         # list all registered domains count by status
         #print(action_obj.domain_status()+action_obj.resource_status()+ time.asctime(time.localtime(time.time())))
 
         monitor_parameters = {"domainStatus": action_obj.domain_status(),
-                              "resourceStatus": action_obj.resource_status(),
-                              "statistics": action_obj.stats(),
+                              "nodeStatus": action_obj.resource_status(),
+                              "vmStatus": action_obj.stats(),
                               "created At": time.asctime(time.localtime(time.time()))
                               }
 
@@ -50,6 +53,7 @@ def main():
         producer.send('kvm-monitor', json.loads(data))
         producer.flush()
         print("Data Pushed and Waiting for 30 secs")
+        print(datetime.now() - startTime)
         time.sleep(30)
 
 

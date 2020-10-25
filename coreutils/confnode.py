@@ -95,3 +95,26 @@ def get_ipaddress():
 def get_python_version():
     py_ver = platform.python_version()
     return py_ver
+
+def get_active_interfaces(conn_return):
+    interfaces = []
+    all_act_interfaces = conn_return.listInterfaces()
+    for iface in all_act_interfaces:
+        interfaces.append(get_interface_mac(conn_return, iface))
+    return interfaces
+
+def get_listInterfaces(conn_return):
+    interfaces = []
+    all_inact_interfaces = conn_return.listDefinedInterfaces()
+    all_act_interfaces = conn_return.listInterfaces()
+    all_interfaces = all_act_interfaces + all_inact_interfaces
+    for iface in all_interfaces:
+        interfaces.append(get_interface_mac(conn_return, iface))
+    return interfaces
+
+def get_interface_mac(conn_return, interface):
+    imac = {}
+    iface = conn_return.interfaceLookupByName(interface)
+    imac = {"name": iface.name(), "MAC address": iface.MACString() }
+
+    return imac
